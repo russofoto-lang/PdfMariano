@@ -29,7 +29,7 @@ export default function PdfConverter() {
 
     try {
       const pdfBytes = await convertToPdf(file)
-      const blob = new Blob([pdfBytes], { type: 'application/pdf' })
+      const blob = new Blob([pdfBytes.buffer as ArrayBuffer], { type: 'application/pdf' })
       const url = URL.createObjectURL(blob)
       setPdfUrl(url)
       setDownloadName(file.name.replace(/\.[^.]+$/, '') + '.pdf')

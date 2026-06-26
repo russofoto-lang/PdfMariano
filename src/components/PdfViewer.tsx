@@ -52,7 +52,7 @@ export default function PdfViewer({ file, onClose }: Props) {
       canvas.width = viewport.width
       canvas.height = viewport.height
 
-      const task = page.render({ canvasContext: ctx, viewport })
+      const task = page.render({ canvas, canvasContext: ctx, viewport })
       renderTaskRef.current = task
       task.promise
         .then(() => {
@@ -148,7 +148,7 @@ export default function PdfViewer({ file, onClose }: Props) {
         const viewport = page.getViewport({ scale })
         canvas.width = viewport.width
         canvas.height = viewport.height
-        const task = page.render({ canvasContext: ctx, viewport })
+        const task = page.render({ canvas, canvasContext: ctx, viewport })
         renderTaskRef.current = task
         task.promise.catch((err) => {
           if (err?.name !== 'RenderingCancelledException') console.error(err)
